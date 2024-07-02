@@ -1,0 +1,56 @@
+Algoritmo "ControleCustosLogisticos"
+
+Var
+   producaoEmpresa, quantidadeCaminhoes, i: inteiro
+   capacidadeCaminhao, quilometrosCaminhao: inteiro
+   valorToneladaQuilometro, custoTransporte, totalTransporte: real
+
+Inicio
+   // Leitura da produção em toneladas da empresa
+   Escreva("Informe a produção em toneladas da empresa:")
+   Leia(producaoEmpresa)
+
+   // Leitura da quantidade de caminhões
+   Escreva("Informe a quantidade de caminhões da frota:")
+   Leia(quantidadeCaminhoes)
+
+   // Inicialização do total do transporte
+   totalTransporte <- 0
+
+   // Loop para ler os dados de cada caminhão
+   Para i <- 1 ate quantidadeCaminhoes faca
+      // Leitura dos dados individuais do caminhão
+      Escreva("Informe a capacidade em toneladas do caminhão", i, ":")
+      Leia(capacidadeCaminhao)
+
+      Escreva("Informe a quantidade de quilômetros percorridos pelo caminhão", i, ":")
+      Leia(quilometrosCaminhao)
+
+      Escreva("Informe o valor por tonelada em um quilômetro rodado do caminhão", i, ":")
+      Leia(valorToneladaQuilometro)
+
+      // Verificação da aptidão da empresa
+      Se producaoEmpresa < capacidadeCaminhao Entao
+         Escreva("A empresa não está apta a realizar o contrato. ")
+         interrompa
+      FimSe
+
+      // Cálculo do custo do transporte para o caminhão atual
+      Se capacidadeCaminhao > 45 Entao
+         custoTransporte <- (capacidadeCaminhao * quilometrosCaminhao) * (valorToneladaQuilometro * 0.75)
+      Senao
+         custoTransporte <- (capacidadeCaminhao * quilometrosCaminhao) * valorToneladaQuilometro
+      FimSe
+
+      // Atualização do valor total do transporte
+      totalTransporte <- totalTransporte + custoTransporte
+
+      // Atualização da produção da empresa
+      producaoEmpresa <- producaoEmpresa - capacidadeCaminhao
+
+   FimPara
+
+   // Exibição do custo total do transporte
+   Escreva("O custo total do transporte é de R$", totalTransporte)
+
+FimAlgoritmo
